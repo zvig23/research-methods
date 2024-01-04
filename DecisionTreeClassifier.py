@@ -15,10 +15,11 @@ class DecisionTreeClassifier():
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
 
-    def build_tree(self, dataset, curr_depth=0):
+    def build_tree(self, dataset: np.ndarray, curr_depth=0):
         ''' recursive function to build the tree '''
 
-        X, Y = dataset[:, :-1], dataset[:, -1]
+        X: np.ndarray = dataset[:, :-1]
+        Y: np.ndarray = dataset[:, -1]
         num_samples, num_features = np.shape(X)
 
         # split until stopping conditions are met
@@ -40,7 +41,7 @@ class DecisionTreeClassifier():
         # return leaf node
         return Node(value=leaf_value)
 
-    def get_best_split(self, dataset, num_samples, num_features):
+    def get_best_split(self, dataset: np.ndarray, num_features: int):
         ''' function to find the best split '''
 
         # dictionary to store the best split
@@ -49,8 +50,8 @@ class DecisionTreeClassifier():
 
         # loop over all the features
         for feature_index in range(num_features):
-            feature_values = dataset[:, feature_index]
-            possible_thresholds = np.unique(feature_values)
+            feature_values: np.ndarray = dataset[:, feature_index]
+            possible_thresholds: np.ndarray = np.unique(feature_values)
             # loop over all the feature values present in the data
             for threshold in possible_thresholds:
                 # get current split
@@ -72,7 +73,7 @@ class DecisionTreeClassifier():
         # return best split
         return best_split
 
-    def split(self, dataset, feature_index, threshold):
+    def split(self, dataset: np.ndarray, feature_index: int, threshold: float):
         ''' function to split the data '''
 
         dataset_left = np.array([row for row in dataset if row[feature_index] <= threshold])
