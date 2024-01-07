@@ -4,7 +4,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-from DecisionTreeClassifier import DecisionTreeClassifier
+from FromScratch.DecisionTreeClassifier import DecisionTreeClassifier
 
 iris = datasets.load_iris()
 col_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'type']
